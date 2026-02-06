@@ -5,29 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뉴욕 영안교회</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; background-color: #f4f7f9; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 15px; }
+        /* 1. 기본 스타일 및 배경 */
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; background-color: #f4f7f9; scroll-behavior: smooth; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 15px 20px 15px; }
+
+        /* 2. 상단 네비게이션 메뉴 (홈피 다운 맛을 내는 핵심) */
+        nav { 
+            background: #fff; 
+            padding: 15px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        nav a { 
+            text-decoration: none; 
+            color: #444; 
+            font-weight: bold; 
+            margin: 0 20px; 
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #007bff; }
+
+        /* 3. 배너 및 표어 영역 */
         header { text-align: center; padding: 25px 0; background: #fff; margin-bottom: 20px; border-radius: 0 0 20px 20px; }
         .banner-img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .motto { font-size: 1.5rem; color: #2c3e50; margin: 25px 0; font-weight: bold; text-align: center; line-height: 1.4; }
+        .motto { font-size: 1.5rem; color: #2c3e50; margin: 25px 0; font-weight: bold; word-break: keep-all; line-height: 1.4; }
         
+        /* 4. 레이아웃 (말씀/소식 카드) */
         .content-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
         .card { flex: 1; min-width: 300px; background: #fff; padding: 25px; border-radius: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .card h3 { color: #8b4513; border-bottom: 2px solid #8b4513; padding-bottom: 10px; margin-top: 0; }
         
-        /* [중요] 게시판 영역을 아주 크게 만들고 하단 여백을 넉넉히 주어 입력창을 노출시킵니다 */
-        .board-section { background: #fff; padding: 25px; border-radius: 15px; margin-bottom: 80px; min-height: 800px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        /* 5. 게시판 영역 */
+        .board-section { background: #fff; padding: 25px; border-radius: 15px; margin-bottom: 80px; min-height: 700px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .board-section h2 { border-left: 6px solid #007bff; padding-left: 15px; margin-top: 0; margin-bottom: 25px; font-size: 1.4rem; color: #333; }
         
-        /* 채팅창 너비 조절 및 높이 강제 설정 */
-        #sil-widget-6984f3934a2dac001395395a { width: 100% !important; min-height: 700px !important; border: 1px solid #eee; border-radius: 10px; }
+        #sil-widget-6984f3934a2dac001395395a { width: 100% !important; min-height: 600px !important; }
 
-        footer { background: #333; color: #fff; padding: 50px 20px; text-align: center; border-radius: 20px 20px 0 0; position: relative; z-index: 10; }
+        footer { background: #333; color: #fff; padding: 50px 20px; text-align: center; border-radius: 20px 20px 0 0; }
         footer p { margin: 8px 0; opacity: 0.8; }
+
+        /* 모바일 대응 메뉴 간격 */
+        @media (max-width: 600px) {
+            nav a { margin: 0 8px; font-size: 0.95rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <nav>
+        <a href="#intro">교회 소개</a>
+        <a href="#sermon">주일 설교</a>
+        <a href="#news">교회 소식</a>
+        <a href="#board">나눔 게시판</a>
+    </nav>
+
+    <div class="container" id="intro">
         <header>
             <img src="main-banner.png" alt="뉴욕 영안교회" class="banner-img">
             <div class="motto">2026년 표어: 경건 습관을 훈련하는 영안 공동체</div>
@@ -35,11 +71,11 @@
 
         <main>
             <div class="content-row">
-                <div class="card">
-                    <h3>최신 말씀</h3>
+                <div class="card" id="sermon">
+                    <h3>주일 설교</h3>
                     <iframe width="100%" height="220" src="https://www.youtube.com/embed/4r6XuI6N8uw" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
                 </div>
-                <div class="card">
+                <div class="card" id="news">
                     <h3>교회 소식</h3>
                     <ul style="list-style: none; padding: 0; line-height: 2.5; font-size: 1rem;">
                         <li>✅ 안내: 엄미령 권사님 감사합니다</li>
@@ -49,7 +85,7 @@
                 </div>
             </div>
 
-            <section class="board-section">
+            <section class="board-section" id="board">
                 <h2>영안 나눔 게시판 (채팅형)</h2>
                 <script data-sil-id="6984f3934a2dac001395395a">
                     (function() {
